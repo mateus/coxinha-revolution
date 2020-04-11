@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 import Phaser from 'phaser';
 import { config } from './config';
 import { CST } from './CST';
-import { LoadScene } from './scenes/LoadScene';
+import LoadScene from './scenes/LoadScene';
 
 class Game extends Phaser.Game {
   constructor() {
@@ -12,4 +13,4 @@ class Game extends Phaser.Game {
 
 window.onload = () => {
   window.game = new Game();
-}
+};

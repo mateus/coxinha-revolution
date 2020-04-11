@@ -1,4 +1,7 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["prettier"]
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "semi": [2, "always"],
+    "import/prefer-default-export": "off"
+  }
 }

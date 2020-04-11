@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 import { CST } from '../CST';
 import { fontStyles } from '../config';
-import { GameScene } from './GameScene';
+import GameScene from './GameScene';
 
-export class MenuScene extends Phaser.Scene {
+export default class MenuScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.MENU });
   }
@@ -12,7 +12,7 @@ export class MenuScene extends Phaser.Scene {
     const { renderer } = this.game;
 
     this.sound.pauseOnBlur = false;
-    this.sound.play(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true })
+    this.sound.play(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true });
 
     this.add
       .text(
@@ -35,15 +35,15 @@ export class MenuScene extends Phaser.Scene {
 
     playButton.on("pointerover", () => {
       playButton.setStyle({ fill: '#ccc' });
-    })
+    });
 
     playButton.on("pointerout", () => {
       playButton.setStyle({ fill: '#fff' });
-    })
+    });
 
     playButton.on("pointerup", () => {
-      this.scene.add(CST.SCENES.GAME, GameScene, false)
+      this.scene.add(CST.SCENES.GAME, GameScene, false);
       this.scene.start(CST.SCENES.GAME);
-    })
+    });
   }
 }

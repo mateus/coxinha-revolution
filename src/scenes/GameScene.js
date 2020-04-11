@@ -1,15 +1,15 @@
 import Phaser from 'phaser';
 import { CST } from '../CST';
-import { fontStyles } from '../config';
+// import { fontStyles } from '../config';
 
-export class GameScene extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.GAME });
   }
 
   create() {
-    const { renderer } = this.game;
+    // const { renderer } = this.game;
 
-    this.cameras.main.setBackgroundColor('#FFF')
+    this.cameras.main.setBackgroundColor('#FFF');
   }
 }

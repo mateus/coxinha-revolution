@@ -1,26 +1,24 @@
 import Phaser from 'phaser';
 import { CST } from '../CST';
-import { MenuScene } from './MenuScene';
+import MenuScene from './MenuScene';
 
-export class LoadScene extends Phaser.Scene {
+export default class LoadScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.LOAD });
   }
 
   loadImages() {
     this.load.setPath("./assets/images");
-
-    for (let prop in CST.IMAGES) {
-      this.load.image(CST.IMAGES[prop], CST.IMAGES[prop])
-    }
+    Object.keys(CST.IMAGES).forEach((key) => {
+      this.load.audio(CST.IMAGES[key], CST.IMAGES[key]);
+    });
   }
 
   loadAudio() {
     this.load.setPath("./assets/music");
-
-    for (let prop in CST.MUSIC) {
-      this.load.audio(CST.MUSIC[prop], CST.MUSIC[prop]);
-    }
+    Object.keys(CST.MUSIC).forEach((key) => {
+      this.load.audio(CST.MUSIC[key], CST.MUSIC[key]);
+    });
   }
 
   preload() {
@@ -29,7 +27,7 @@ export class LoadScene extends Phaser.Scene {
 
     const { renderer } = this.game;
 
-    let loadingBar = this.add.graphics({
+    const loadingBar = this.add.graphics({
       fillStyle: {
         color: 0xffffff,
       }
@@ -45,6 +43,6 @@ export class LoadScene extends Phaser.Scene {
   }
 
   create() {
-    this.scene.add(CST.SCENES.MENU, MenuScene, false)
+    this.scene.add(CST.SCENES.MENU, MenuScene, false);
   }
 }
