@@ -12,6 +12,7 @@ export default class MenuScene extends Phaser.Scene {
     this.backgroundSound();
     this.renderBackgroundImage();
     this.renderGameTitle();
+    this.renderFootnote();
     const playButton = this.renderPlayButton();
 
     playButton.on("pointerover", () => {
@@ -34,9 +35,9 @@ export default class MenuScene extends Phaser.Scene {
     return this.add
       .text(
         renderer.width / 2,
-        renderer.height * 0.20,
+        renderer.height * 0.15,
         'Coxinha Revolution',
-        { ...fontStyles, font: "bold 80px Helvetica", fill: '#ffa500' },
+        { ...fontStyles, font: "bold 80px Helvetica" }
       )
       .setOrigin(0.5);
   }
@@ -47,7 +48,7 @@ export default class MenuScene extends Phaser.Scene {
     return this.add
       .text(
         renderer.width / 2,
-        renderer.height * 0.40,
+        renderer.height * 0.35,
         'Play',
         fontStyles,
       )
@@ -62,6 +63,26 @@ export default class MenuScene extends Phaser.Scene {
       .setOrigin(0)
       .setDepth(0)
       .setDisplaySize(config.width, config.height);
+  }
+
+  renderFootnote() {
+    const { renderer } = this.game;
+
+    this.add
+      .text(
+        renderer.width - 80,
+        renderer.height - 20,
+        'Made with ❤️ by Mateus Ferreira',
+        { ...fontStyles, font: "24px Helvetica", fill: '#f5f5f5' },
+      )
+      .setOrigin(1);
+    this.add
+      .image(
+        renderer.width - 20,
+        renderer.height - 20,
+        CST.IMAGES.MATEUSKAWAII,
+      )
+      .setOrigin(1);
   }
 
   backgroundSound(play = true) {
