@@ -11,6 +11,9 @@ export class MenuScene extends Phaser.Scene {
   create() {
     const { renderer } = this.game;
 
+    this.sound.pauseOnBlur = false;
+    this.sound.play(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true })
+
     this.add
       .text(
         renderer.width / 2,

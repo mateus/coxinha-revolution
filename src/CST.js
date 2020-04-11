@@ -7,5 +7,8 @@ export const CST = {
   IMAGES: {
     COXINHA: "coxinha.png",
     PATOXINHA: "patoxinha.png",
+  },
+  MUSIC: {
+    COXINHA_DE_FRANGO: "coxinha-de-frango.mp3"
   }
 }

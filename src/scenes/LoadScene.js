@@ -15,8 +15,18 @@ export class LoadScene extends Phaser.Scene {
     }
   }
 
+  loadAudio() {
+    this.load.setPath("./assets/music");
+
+    for (let prop in CST.MUSIC) {
+      this.load.audio(CST.MUSIC[prop], CST.MUSIC[prop]);
+    }
+  }
+
   preload() {
     this.loadImages();
+    this.loadAudio();
+
     const { renderer } = this.game;
 
     let loadingBar = this.add.graphics({

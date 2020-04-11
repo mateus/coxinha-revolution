@@ -10,13 +10,6 @@ export class GameScene extends Phaser.Scene {
   create() {
     const { renderer } = this.game;
 
-    this.add
-      .text(
-        renderer.width / 2,
-        renderer.height * 0.50,
-        'The game should start now',
-        fontStyles,
-      )
-      .setOrigin(0.5);
+    this.cameras.main.setBackgroundColor('#FFF')
   }
 }
