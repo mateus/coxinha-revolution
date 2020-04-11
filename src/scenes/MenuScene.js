@@ -6,60 +6,106 @@ import GameScene from './GameScene';
 export default class MenuScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.MENU });
+    this.musicPlaying = true;
   }
 
   create() {
-    this.backgroundSound();
     this.renderBackgroundImage();
     this.renderGameTitle();
     this.renderFootnote();
-    const playButton = this.renderPlayButton();
-
-    playButton.on("pointerover", () => {
-      playButton.setStyle({ fill: '#f5f5f5' });
-    });
-
-    playButton.on("pointerout", () => {
-      playButton.setStyle(fontStyles);
-    });
-
-    playButton.on("pointerup", () => {
-      this.scene.add(CST.SCENES.GAME, GameScene, false);
-      this.scene.start(CST.SCENES.GAME);
-    });
+    this.renderMusicButton();
+    this.renderPlayButton();
   }
 
   renderGameTitle() {
     const { renderer } = this.game;
 
-    return this.add
+    this.gameTitle = this.add
       .text(
         renderer.width / 2,
-        renderer.height * 0.15,
+        renderer.height * 0.25,
         'Coxinha Revolution',
         { ...fontStyles, font: "bold 80px Helvetica" }
       )
       .setOrigin(0.5);
+
+    this.tweens.add({
+      targets: this.gameTitle,
+      scale: 1.08,
+      angle: 4,
+      duration: 400,
+      ease: 'Bounce',
+      yoyo: true,
+      repeat: -1,
+      repeatDelay: 3000,
+    });
+  }
+
+  renderMusicButton() {
+    const { renderer } = this.game;
+
+    this.sound.pauseOnBlur = false;
+    this.music = this.sound.add(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true });
+    this.music.play();
+
+    const musicButton = this.add
+      .text(
+        70,
+        renderer.height - 35,
+        `Music: ${this.musicPlaying ? 'on' : 'off'}`,
+        { ...fontStyles, font: "bold 20px Helvetica" }
+      )
+      .setOrigin(0.5)
+      .setInteractive({ useHandCursor: true });
+
+    musicButton
+      .on("pointerover", () => {
+        musicButton.setScale(1.05);
+      })
+      .on("pointerout", () => {
+        musicButton.setScale(1);
+      })
+      .on("pointerup", () => {
+        if (this.musicPlaying) {
+          this.music.pause();
+        } else {
+          this.music.resume();
+        }
+        this.musicPlaying = !this.musicPlaying;
+        musicButton.setText(`Music: ${this.musicPlaying ? 'on' : 'off'}`);
+      });
   }
 
   renderPlayButton() {
     const { renderer } = this.game;
 
-    return this.add
+    this.playButton = this.add
       .text(
         renderer.width / 2,
-        renderer.height * 0.40,
+        renderer.height - 110,
         'Play',
         fontStyles,
       )
       .setOrigin(0.5)
-      .setInteractive();
+      .setInteractive({ useHandCursor: true });
+
+    this.playButton
+      .on("pointerover", () => {
+        this.playButton.setScale(1.05);
+      })
+      .on("pointerout", () => {
+        this.playButton.setScale(1);
+      })
+      .on("pointerup", () => {
+        this.scene.add(CST.SCENES.GAME, GameScene, false);
+        this.scene.start(CST.SCENES.GAME);
+      });
   }
 
   renderBackgroundImage() {
     const { config } = this.game;
 
-    return this.add.image(0, 0, CST.IMAGES.BACKGROUND)
+    this.add.image(0, 0, CST.IMAGES.BACKGROUND)
       .setOrigin(0)
       .setDepth(0)
       .setDisplaySize(config.width, config.height);
@@ -71,9 +117,9 @@ export default class MenuScene extends Phaser.Scene {
     this.add
       .text(
         renderer.width - 80,
-        renderer.height - 20,
+        renderer.height - 22,
         'Made with ❤️ by Mateus Ferreira',
-        { ...fontStyles, font: "24px Helvetica", fill: '#f5f5f5' },
+        { ...fontStyles, font: "18px Helvetica", fill: '#f5f5f5' },
       )
       .setOrigin(1);
     this.add
@@ -83,13 +129,5 @@ export default class MenuScene extends Phaser.Scene {
         CST.IMAGES.MATEUSKAWAII,
       )
       .setOrigin(1);
-  }
-
-  backgroundSound(play = true) {
-    this.sound.pauseOnBlur = false;
-
-    if (play) {
-      this.sound.play(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true });
-    }
   }
 }
