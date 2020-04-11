@@ -5,6 +5,7 @@ Thumbs.db
 
 # Lock files
 yarn.lock
+yarn-error.log
 
 # Vendors
 node_modules/

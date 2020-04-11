@@ -1,32 +1,43 @@
-import Phaser from "phaser";
-import logoImg from "./assets/logo.png";
+import Phaser from 'phaser';
+import coxinhaImg from './assets/coxinha.png';
 
 const config = {
   type: Phaser.AUTO,
-  parent: "phaser-example",
+  parent: 'coxinha-revolution',
   width: 800,
   height: 600,
+  physics: {
+    default: 'arcade',
+    arcade: {
+      gravity: { y: 300 },
+      debug: false
+    },
+  },
   scene: {
-    preload: preload,
-    create: create
-  }
+    preload,
+    create,
+  },
 };
 
 const game = new Phaser.Game(config);
 
 function preload() {
-  this.load.image("logo", logoImg);
+  this.load.image('coxinha', coxinhaImg);
 }
 
 function create() {
-  const logo = this.add.image(400, 150, "logo");
+  const logo = this.add.image(400, 150, 'coxinha');
 
   this.tweens.add({
     targets: logo,
     y: 450,
     duration: 2000,
-    ease: "Power2",
+    ease: 'Power2',
     yoyo: true,
-    loop: -1
+    loop: -1,
   });
+}
+
+function update() {
+
 }
