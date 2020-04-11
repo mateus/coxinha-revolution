@@ -21,4 +21,4 @@ export const config = {
   }
 };
 
-export const fontStyles = { font: "bold 50px Helvetica", fill: "#fff" };
+export const fontStyles = { font: "bold 60px Helvetica", fill: "#fff" };

@@ -48,7 +48,7 @@ export default class MenuScene extends Phaser.Scene {
     return this.add
       .text(
         renderer.width / 2,
-        renderer.height * 0.35,
+        renderer.height * 0.40,
         'Play',
         fontStyles,
       )

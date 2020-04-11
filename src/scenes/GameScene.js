@@ -8,8 +8,15 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    // const { renderer } = this.game;
+    this.renderBackgroundImage();
+  }
 
-    this.cameras.main.setBackgroundColor('#FFF');
+  renderBackgroundImage() {
+    const { config } = this.game;
+
+    return this.add.image(0, 0, CST.IMAGES.BACKGROUND)
+      .setOrigin(0)
+      .setDepth(0)
+      .setDisplaySize(config.width, config.height);
   }
 }
