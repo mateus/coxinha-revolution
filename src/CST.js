@@ -7,6 +7,7 @@ export const CST = {
   IMAGES: {
     COXINHA: "coxinha.png",
     PATOXINHA: "patoxinha.png",
+    PORCOXINHA: "porcoxinha.png",
     BACKGROUND: "background.png",
     MATEUSKAWAII: "mateuskawaii.png"
   },
