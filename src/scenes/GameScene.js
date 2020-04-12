@@ -119,7 +119,7 @@ export default class GameScene extends Phaser.Scene {
     this.tweens.add({
       targets: this.coxinha,
       duration,
-      rotation: 10,
+      rotation: getRandomInt(10, 15),
       x: renderer.width + 100,
       y: getRandomInt(50, renderer.height - 50),
       ease: 'Cubic',
