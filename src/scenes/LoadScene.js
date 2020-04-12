@@ -21,9 +21,20 @@ export default class LoadScene extends Phaser.Scene {
     });
   }
 
+  loadSprites(frameConfig) {
+    this.load.setPath("src/assets/sprites");
+    Object.keys(CST.SPRITES).forEach((key) => {
+      this.load.spritesheet(CST.SPRITES[key], CST.SPRITES[key], frameConfig);
+    });
+  }
+
   preload() {
     this.loadImages();
     this.loadAudio();
+    this.loadSprites({
+      frameHeight: 200,
+      frameWidth: 128,
+    });
 
     const { renderer } = this.game;
 

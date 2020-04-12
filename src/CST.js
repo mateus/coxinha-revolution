@@ -8,9 +8,13 @@ export const CST = {
     COXINHA: "coxinha.png",
     PATOXINHA: "patoxinha.png",
     BACKGROUND: "background.png",
-    MATEUSKAWAII: "mateuskawaii.png",
+    MATEUSKAWAII: "mateuskawaii.png"
+  },
+  SPRITES: {
+    PLAYER: "player.png"
   },
   MUSIC: {
-    COXINHA_DE_FRANGO: "coxinha-de-frango.mp3"
+    COXINHA_DE_FRANGO: "coxinha-de-frango.mp3",
+    EAT: "eat.mp3",
   }
 };

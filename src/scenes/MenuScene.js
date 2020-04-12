@@ -47,7 +47,7 @@ export default class MenuScene extends Phaser.Scene {
     const { renderer } = this.game;
 
     this.sound.pauseOnBlur = false;
-    this.music = this.sound.add(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true });
+    this.music = this.sound.add(CST.MUSIC.COXINHA_DE_FRANGO, { loop: true, volume: 0.6 });
     this.music.play();
 
     const musicButton = this.add
