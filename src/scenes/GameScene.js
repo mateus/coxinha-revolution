@@ -12,6 +12,11 @@ export default class GameScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.GAME });
     this.score = 0;
+    this.totalByCoxinhaType = {
+      coxinhas: 0,
+      porcoxinhas: 0,
+      patoxinhas: 0,
+    };
     this.isPatoxinha = false;
     this.isPorcoxinha = false;
     this.eatCoxinha = this.eatCoxinha.bind(this);
@@ -100,6 +105,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   renderFlyingCoxinha() {
+    // console.log(this.totalByCoxinhaType);
     const { renderer } = this.game;
     const { image, duration } = this.getNextCoxinhaValues();
 
@@ -152,10 +158,13 @@ export default class GameScene extends Phaser.Scene {
     let incrementBy;
 
     if (this.isPatoxinha) {
+      this.totalByCoxinhaType.patoxinhas += 1;
       incrementBy = 3;
     } else if (this.isPorcoxinha) {
+      this.totalByCoxinhaType.porcoxinhas += 1;
       incrementBy = 2;
     } else {
+      this.totalByCoxinhaType.coxinhas += 1;
       incrementBy = 1;
     }
 
