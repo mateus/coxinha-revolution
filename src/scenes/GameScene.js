@@ -24,8 +24,11 @@ export default class GameScene extends Phaser.Scene {
 
   create() {
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE, { volume: 1 });
-    this.music = this.sound.add(CST.MUSIC.EAT);
+    this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    this.eatSound = this.sound.add(CST.MUSIC.EAT, { volume: 0.6 });
+    this.chickenSound = this.sound.add(CST.MUSIC.CHICKEN, { volume: 0.6 });
+    this.pigSound = this.sound.add(CST.MUSIC.PIG, { volume: 0.6 });
+    this.duckSound = this.sound.add(CST.MUSIC.DUCK, { volume: 0.6 });
 
     this.renderBackgroundImage();
     this.renderPlayer();
@@ -147,7 +150,7 @@ export default class GameScene extends Phaser.Scene {
       // might be able to eat
       if (coxinhaPosition.y + 80 >= playerPosition.y && coxinhaPosition.y - 80 <= playerPosition.y) {
         // should eat
-        this.music.play();
+        this.eatSound.play();
         this.updateScore();
         this.renderFlyingCoxinha();
       }
@@ -158,12 +161,15 @@ export default class GameScene extends Phaser.Scene {
     let incrementBy;
 
     if (this.isPatoxinha) {
+      this.duckSound.play();
       this.totalByCoxinhaType.patoxinhas += 1;
       incrementBy = 3;
     } else if (this.isPorcoxinha) {
+      this.pigSound.play();
       this.totalByCoxinhaType.porcoxinhas += 1;
       incrementBy = 2;
     } else {
+      this.chickenSound.play();
       this.totalByCoxinhaType.coxinhas += 1;
       incrementBy = 1;
     }

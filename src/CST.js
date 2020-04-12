@@ -17,5 +17,8 @@ export const CST = {
   MUSIC: {
     COXINHA_DE_FRANGO: "coxinha-de-frango.mp3",
     EAT: "eat.mp3",
+    CHICKEN: "chicken.mp3",
+    PIG: "pig.mp3",
+    DUCK: "duck.mp3"
   }
 };
