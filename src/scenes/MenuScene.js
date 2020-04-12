@@ -11,6 +11,8 @@ export default class MenuScene extends Phaser.Scene {
 
   create() {
     this.renderBackgroundImage();
+    this.renderPeekingCoxinha();
+    this.renderFlyingPatoxinha();
     this.renderGameTitle();
     this.renderFootnote();
     this.renderMusicButton();
@@ -20,7 +22,7 @@ export default class MenuScene extends Phaser.Scene {
   renderGameTitle() {
     const { renderer } = this.game;
 
-    this.gameTitle = this.add
+    const gameTitle = this.add
       .text(
         renderer.width / 2,
         renderer.height * 0.25,
@@ -30,7 +32,7 @@ export default class MenuScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     this.tweens.add({
-      targets: this.gameTitle,
+      targets: gameTitle,
       scale: 1.08,
       angle: 4,
       duration: 400,
@@ -79,7 +81,7 @@ export default class MenuScene extends Phaser.Scene {
   renderPlayButton() {
     const { renderer } = this.game;
 
-    this.playButton = this.add
+    const playButton = this.add
       .text(
         renderer.width / 2,
         renderer.height - 110,
@@ -89,12 +91,12 @@ export default class MenuScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
 
-    this.playButton
+    playButton
       .on("pointerover", () => {
-        this.playButton.setScale(1.05);
+        playButton.setScale(1.05);
       })
       .on("pointerout", () => {
-        this.playButton.setScale(1);
+        playButton.setScale(1);
       })
       .on("pointerup", () => {
         this.scene.add(CST.SCENES.GAME, GameScene, false);
@@ -109,6 +111,42 @@ export default class MenuScene extends Phaser.Scene {
       .setOrigin(0)
       .setDepth(0)
       .setDisplaySize(config.width, config.height);
+  }
+
+  renderPeekingCoxinha() {
+    const coxinha = this.add.image(30, 20, CST.IMAGES.COXINHA)
+      .setOrigin(0)
+      .setAngle(45);
+
+    this.tweens.add({
+      targets: coxinha,
+      duration: 400,
+      x: 35,
+      y: 15,
+      ease: 'Bounce',
+      yoyo: true,
+      repeat: -1,
+      repeatDelay: 3000,
+      delay: 2000,
+    });
+  }
+
+  renderFlyingPatoxinha() {
+    const { renderer } = this.game;
+    const patoxinha = this.add.image(-200, 500, CST.IMAGES.PATOXINHA)
+      .setAngle(45);
+
+    this.tweens.add({
+      targets: patoxinha,
+      duration: 4000,
+      rotation: 20,
+      x: renderer.width + 500,
+      y: 400,
+      ease: 'Cubic',
+      repeat: -1,
+      repeatDelay: 5000,
+      delay: 2500,
+    });
   }
 
   renderFootnote() {
