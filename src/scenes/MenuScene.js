@@ -16,6 +16,7 @@ export default class MenuScene extends Phaser.Scene {
     this.renderGameTitle();
     this.renderFootnote();
     this.renderMusicButton();
+    this.renderInstructions();
     this.renderPlayButton();
   }
 
@@ -84,9 +85,9 @@ export default class MenuScene extends Phaser.Scene {
     const playButton = this.add
       .text(
         renderer.width / 2,
-        renderer.height - 110,
+        renderer.height - 115,
         'Play',
-        fontStyles,
+        fontStyles
       )
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
@@ -102,6 +103,27 @@ export default class MenuScene extends Phaser.Scene {
         this.scene.add(CST.SCENES.GAME, GameScene, false);
         this.scene.start(CST.SCENES.GAME);
       });
+  }
+
+  renderInstructions() {
+    const { renderer } = this.game;
+
+    this.add
+      .text(
+        renderer.width / 2,
+        renderer.height - 55,
+        '⬆/⬇ to move',
+        { ...fontStyles, font: "bold 18px Helvetica", fill: "#000" }
+      )
+      .setOrigin(0.5);
+    this.add
+      .text(
+        renderer.width / 2,
+        renderer.height - 30,
+        'Spacebar to eat',
+        { ...fontStyles, font: "bold 18px Helvetica", fill: "#000" }
+      )
+      .setOrigin(0.5);
   }
 
   renderBackgroundImage() {
