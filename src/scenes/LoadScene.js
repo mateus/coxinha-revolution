@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { CST } from '../CST';
 import MenuScene from './MenuScene';
+import GameScene from './GameScene';
 
 export default class LoadScene extends Phaser.Scene {
   constructor() {
@@ -55,5 +56,6 @@ export default class LoadScene extends Phaser.Scene {
 
   create() {
     this.scene.add(CST.SCENES.MENU, MenuScene, false);
+    this.scene.add(CST.SCENES.GAME, GameScene, false);
   }
 }

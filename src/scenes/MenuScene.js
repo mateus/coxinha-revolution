@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import { CST } from '../CST';
 import { fontStyles } from '../config';
-import GameScene from './GameScene';
 
 export default class MenuScene extends Phaser.Scene {
   constructor() {
@@ -100,7 +99,6 @@ export default class MenuScene extends Phaser.Scene {
         playButton.setScale(1);
       })
       .on("pointerup", () => {
-        this.scene.add(CST.SCENES.GAME, GameScene, false);
         this.scene.start(CST.SCENES.GAME);
       });
   }
