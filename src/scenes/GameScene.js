@@ -34,6 +34,7 @@ export default class GameScene extends Phaser.Scene {
     this.renderPlayer();
     this.renderFlyingCoxinha();
     this.renderScore();
+    this.renderCounter();
   }
 
   update() {
@@ -137,6 +138,30 @@ export default class GameScene extends Phaser.Scene {
       .setDisplaySize(config.width, config.height);
   }
 
+  renderCounter() {
+    const { renderer } = this.game;
+    let counter = 10;
+
+    this.counterText = this.add
+      .text(
+        renderer.width / 2,
+        50,
+        counter,
+        { ...fontStyles, font: "bold 60px Helvetica" }
+      )
+      .setOrigin(0.5);
+
+    const counterInterval = setInterval(() => {
+      counter -= 1;
+      this.counterText.setText(counter);
+      if (counter === 0) {
+        clearInterval(counterInterval);
+        this.showResults();
+      }
+    }, 1000);
+  }
+
+
   eatCoxinha() {
     this.player.play('eat');
 
@@ -177,11 +202,6 @@ export default class GameScene extends Phaser.Scene {
     this.score += incrementBy;
     this.scoreText.setText(this.score);
     this.coxinha.destroy();
-
-    // Check if time is up
-    if (this.score > 3) {
-      this.showResults();
-    }
   }
 
   showResults() {
