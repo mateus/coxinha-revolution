@@ -177,6 +177,18 @@ export default class GameScene extends Phaser.Scene {
     this.score += incrementBy;
     this.scoreText.setText(this.score);
     this.coxinha.destroy();
+
+    // Check if time is up
+    if (this.score > 3) {
+      this.showResults();
+    }
+  }
+
+  showResults() {
+    this.scene.start(CST.SCENES.RESULT, {
+      finalScore: this.score,
+      totalByCoxinhaType: this.totalByCoxinhaType,
+    });
   }
 
   updatePlayerPosition() {
