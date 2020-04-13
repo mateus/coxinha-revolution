@@ -2,14 +2,24 @@ import Phaser from 'phaser';
 import { CST } from '../CST';
 import { fontStyles } from '../config';
 
+function resetGame() {
+  window.location.reload();
+};
+
 export default class ResultScene extends Phaser.Scene {
   constructor() {
     super({ key: CST.SCENES.RESULT });
-    this.resetGame = this.resetGame.bind(this);
   }
 
   init(data) {
-    this.data = data;
+    this.data = data || {
+      finalScore: 0,
+      totalByCoxinhaType: {
+        coxinhas: 0,
+        porcoxinhas: 0,
+        patoxinhas: 0,
+      },
+    };
   }
 
   create() {
@@ -17,7 +27,7 @@ export default class ResultScene extends Phaser.Scene {
     this.canDoBetterSound = this.sound.add(CST.MUSIC.DO_BETTER, { volume: 0.6 });
     this.veryNiceSound = this.sound.add(CST.MUSIC.VERY_NICE, { volume: 0.6 });
     this.amazingSound = this.sound.add(CST.MUSIC.AMAZING, { volume: 0.6 });
-    this.keyEscape.on('down', this.resetGame);
+    this.keyEscape.on('down', resetGame);
 
     this.renderResult();
   }
@@ -81,20 +91,29 @@ export default class ResultScene extends Phaser.Scene {
   }
 
   playResultAudio() {
-    this.data.finalScore = 100;
+    const { renderer } = this.game;
     const { finalScore } = this.data;
+    let message;
 
     if (finalScore >= 100) {
+      message = "Look at that! That's amazing. Congratulations!";
       this.amazingSound.play();
     } else if (finalScore >= 60 && finalScore < 100) {
+      message = "Very nice!";
       this.veryNiceSound.play();
     } else {
+      message = "You can do better than this!";
       this.canDoBetterSound.play();
     }
-  }
 
-  resetGame() {
-    // TODO properly restart the GAME scene
-    this.scene.start(CST.SCENES.GAME);
+    this.add
+      .text(
+        renderer.width / 2,
+        renderer.height * 0.15,
+        message,
+        { ...fontStyles, font: "bold 20px Helvetica" }
+      )
+      .setOrigin(0.5);
   }
 }
+

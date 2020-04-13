@@ -140,7 +140,7 @@ export default class GameScene extends Phaser.Scene {
 
   renderCounter() {
     const { renderer } = this.game;
-    let counter = 10;
+    let counter = 60;
 
     this.counterText = this.add
       .text(
