@@ -10,21 +10,21 @@ export default class LoadScene extends Phaser.Scene {
   }
 
   loadImages() {
-    this.load.setPath("src/assets/images");
+    this.load.setPath("assets/images");
     Object.keys(CST.IMAGES).forEach((key) => {
       this.load.image(CST.IMAGES[key], CST.IMAGES[key]);
     });
   }
 
   loadAudio() {
-    this.load.setPath("src/assets/music");
+    this.load.setPath("assets/music");
     Object.keys(CST.MUSIC).forEach((key) => {
       this.load.audio(CST.MUSIC[key], CST.MUSIC[key]);
     });
   }
 
   loadSprites(frameConfig) {
-    this.load.setPath("src/assets/sprites");
+    this.load.setPath("assets/sprites");
     Object.keys(CST.SPRITES).forEach((key) => {
       this.load.spritesheet(CST.SPRITES[key], CST.SPRITES[key], frameConfig);
     });

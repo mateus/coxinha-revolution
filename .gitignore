@@ -12,4 +12,5 @@ node_modules/
 
 # Build
 dist/
+.firebase
 /npm-debug.log
